@@ -1,9 +1,4 @@
-message_01 = ''
-message_02 = ''
-message_03 = ''
-message_04 = ''
-message_05 = ''
-messages = 0;
+message_01 = message_02 = message_03 = message_04 = message_05 = messages = ''
 
 def display():
     print('\n' * 50)
