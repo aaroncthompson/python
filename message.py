@@ -32,6 +32,5 @@ while message_04 == '':
 while message_05 == '':
     display()
     message_05 = input() + ' - ' + strftime("%Y-%m-%d %H:%M:%S")
-    messages = 1
 
 display()
