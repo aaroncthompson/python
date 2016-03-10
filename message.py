@@ -4,7 +4,7 @@ board = []
 
 while True:
     print('\n' * 50)
-    for posts in board:
+    for posts in board: # range(len(board))?
         print(posts)
     print('------')
     print('Leave a new message!')
