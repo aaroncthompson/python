@@ -9,4 +9,4 @@ while True:
     print('------')
     print('Leave a new message!')
     posts = input() + ' - ' + strftime("%Y-%m-%d %H:%M:%S")
-    board = [posts] + board
+    board = board + [posts]
