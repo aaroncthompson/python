@@ -1,11 +1,15 @@
 allies = []
 enemies = []
 
+# array or list with keys etc to organize relationship points with different characters / factions?
+# if relationship[dwarf] < -1000, elsif -500, elsif -250, elsif 0, elsif 250, elsif 500, elsif 1000, else
+# if relationship[elf] < -1000, elsif -500, elsif -250, elsif 0, elsif 250, elsif 500, elsif 1000, else
+
 if 'dwarf' in allies:
   # passive buff
   # dwarf discount
   # dwarf appearance in final battle
-  # negative effect on relationship with elf
+  # negative effect on relationship with elf, maybe a flat -100 or more
   
 if 'elf' in allies:
   # passive buff
