@@ -25,6 +25,3 @@ if 'elf' in enemies:
 
 def doathing(person, browniepts): # for both positive and negative interactions
   #relationship[person] += browniepts
-
-def amnesia(person):
-  #relationship[person] = 0
