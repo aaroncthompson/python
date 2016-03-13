@@ -22,3 +22,6 @@ if 'dwarf' in enemies:
   
 if 'elf' in enemies:
   # positive effect on relationship with dwarf
+
+def donicething(person, browniepts):
+  #relationship[person] += browniepts
