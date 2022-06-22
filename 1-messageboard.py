@@ -2,31 +2,42 @@
 
 from datetime import datetime,timezone
 
+# first!
 messages = [{'name': 'Aaron', 'date':'2022-06-22 05:07:20.884325+00:00', 'message':'Hey there! Hope you\'re having a pretty okay day.'}]
 
-print(f"Welcome to the messageboard! It is currently {datetime.now(timezone.utc)}.")
+def welcome():
+    print(f"Welcome to the messageboard! It is currently {datetime.now(timezone.utc)}.\nThere are {len(messages)} messages.")
+    choice = input('Type "save" (without quotes) to save a message, "show" (without quotes) to list the messages saved so far, or "exit" to exit.\n>> ')
+    if choice == "save":
+        save_message()
+    elif choice == "show":
+        show_messages()
+    elif choice == "exit":
+        print("Exiting!")
+    else:
+        print("Invalid choice. Exiting!")
 
-name = input("What is your name? ").title()
+def save_message():
+    name = input("What is your name? >> ").title()
+    if str(name).lower() == "bob":
+        print(f"Bob isn't allowed to use this.\nThis incident will be reported.")
+    message = input("What is your message? >> ")
+    entry = {}
+    entry['name'] = str(name)
+    entry['date'] = str(datetime.now(timezone.utc))
+    entry['message'] = str(message)
+    messages.append(entry)
+    welcome()
 
-# check to see if name is Bob, say Bob's not allowed to use this or something
-# if str(name).lower = bob:
-#   print(f"Bob isn't allowed to use this.\nThis incident will be reported.")
+def show_messages():
+    for each_message in messages:
+        print(f"{each_message['name']} said at {each_message['date']}: {each_message['message']}")
+    welcome()
 
-message = input("What is your message? ")
+welcome()
 
-entry = {}
-entry['name'] = str(name)
-entry['date'] = str(datetime.now(timezone.utc))
-entry['message'] = str(message)
+# is that, like.. okay? calling a function from another function - seems like it could potentially pick up some overhead as they nest? idk what i'm talking about
 
-messages.append(entry)
-
-print(f"There are {len(messages)} messages.")
-
-for each_message in messages:
-    print(f"{each_message['name']} said at {each_message['date']}: {each_message['message']}")
-
-# then just loop back to "What is your name?" - guessing taking this there will involve wrapping the above into a function and then looping that function
 # 2.0 should allow the user to actually decide whether to put in a new message or list all currently saved messages
 # 3.0 should allow the user to selectively display messages from a certain date (let's just stick to month/day) and/or name
 # 4.0 should actually save the messages somewhere and have them persist
