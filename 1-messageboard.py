@@ -33,7 +33,5 @@ def show_messages():
 
 welcome()
 
-
-
 # 3.0 should allow the user to selectively display messages from a certain date (let's just stick to month/day) and/or name
 # 4.0 should actually save the messages somewhere and have them persist
