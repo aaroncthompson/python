@@ -6,8 +6,7 @@ from datetime import datetime,timezone
 messages = [{'name': 'Aaron', 'date':'2022-06-22 05:07:20.884325+00:00', 'message':'Hey there! Hope you\'re having a pretty okay day.'}]
 
 def welcome():
-    global active
-    while active:
+    while True:
         print(f"Welcome to the messageboard! It is currently {datetime.now(timezone.utc)}.\nThere are {len(messages)} messages.")
         choice = input('Type "save" (without quotes) to save a message, "show" (without quotes) to list the messages saved so far, or "exit" to exit.\n>> ')
         if choice == "save":
@@ -16,10 +15,10 @@ def welcome():
             show_messages()
         elif choice == "exit":
             print("Exiting!")
-            active = False
+            break
         elif choice == "quit":
-            print("I know you meant 'exit', so I'll respect that.")
-            active = False
+            print("I know you meant 'exit', so I'll respect that. Exiting!")
+            break
         else:
             print(f"Invalid choice.\n")
 
@@ -34,9 +33,8 @@ def save_message():
 
 def show_messages():
     for each_message in messages:
-        print(f"{each_message['name']} said at {each_message['date']}: {each_message['message']}\n")
+        print(f"{each_message['name']} said at {each_message['date']}: {each_message['message']}")
 
-active = True
 welcome()
 
 # 3.0 should allow the user to selectively display messages from a certain date (let's just stick to month/day) and/or name
