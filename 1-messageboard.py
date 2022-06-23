@@ -18,14 +18,12 @@ def welcome():
         print("Invalid choice. Exiting!")
 
 def save_message():
-    name = input("What is your name? >> ").title()
-    if str(name).lower() == "bob":
-        print(f"Bob isn't allowed to use this.\nThis incident will be reported.")
-    message = input("What is your message? >> ")
     entry = {}
-    entry['name'] = str(name)
+    entry['name'] = input("What is your name? >> ").title()
+    if entry['name'].lower() == "bob":
+        print(f"Bob isn't allowed to use this.\nThis incident will be reported.")
     entry['date'] = str(datetime.now(timezone.utc))
-    entry['message'] = str(message)
+    entry['message'] = input("What is your message? >> ")
     messages.append(entry)
     welcome()
 
