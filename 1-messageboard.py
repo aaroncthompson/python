@@ -36,11 +36,5 @@ welcome()
 
 # is that, like.. okay? calling a function from another function - seems like it could potentially pick up some overhead as they nest? idk what i'm talking about
 
-# 2.0 should allow the user to actually decide whether to put in a new message or list all currently saved messages
 # 3.0 should allow the user to selectively display messages from a certain date (let's just stick to month/day) and/or name
 # 4.0 should actually save the messages somewhere and have them persist
-
-# first function will have the welcome message, then ask if the user wants to leave a message or read them (or maybe just exit?)
-## will rely on user input, need to anticipate shenanigans
-# next function will be the actual message-leaving, then send the user back to the first function
-# next function will be the message-listing, then send the user back to the first function
