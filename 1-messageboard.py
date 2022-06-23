@@ -26,13 +26,16 @@ def save_message():
     entry = {}
     entry['name'] = input("What is your name? >> ").title()
     if entry['name'].lower() == "bob":
-        print(f"Bob isn't allowed to use this.\nThis incident will be reported.")
+        print(f"Bob isn't supposed to be using this.\nThis incident will be reported.")
     entry['date'] = str(datetime.now(timezone.utc))
     entry['message'] = input("What is your message? >> ")
     messages.append(entry)
 
 def show_messages():
     for each_message in messages:
+        if "bob" in each_message['name'].lower() or "bob" in each_message['message'].lower():
+            print("A message mentioning Bob has been removed.")
+            continue
         print(f"{each_message['name']} said at {each_message['date']}: {each_message['message']}")
 
 welcome()
