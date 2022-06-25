@@ -86,24 +86,25 @@ inventory = [
 # everything below this (and probably above this) is WIP.
 
 def main_menu():
-    mm_choice = input("""
+    while True:
+        mm_choice = input("""
 Welcome to the library! What would you like to do? You can also enter an item ID to check an item in or out.
     1: Check inventory
     2: Add an item
     3: Remove an item
     4: Quit
 >> """)
-    if mm_choice == "1" OR "check" OR "list":
-        list_inventory()
-    elif mm_choice == "2" OR "add":
-        add_item()
-    elif mm_choice == "3" OR "rm" OR "remove":
-        remove_item()
-    elif mm_choice == "4" OR "quit" OR "exit":
-        print("Thanks for visiting the library. Good-bye!")
-        quit()
-    else:
-        check_in_out(mm_choice)
+        if mm_choice in {"1","check","list"}:
+            list_inventory()
+        elif mm_choice in {"2","add"}:
+            add_item()
+        elif mm_choice in {"3","rm","remove"}:
+            remove_item()
+        elif mm_choice in {"4","quit","exit"}:
+            print("Thanks for visiting the library. Good-bye!")
+            quit()
+        else:
+            check_in_out(mm_choice)
 
 # todo: implement - ask user whether they'd like to list items by medium / year / author, give choices 0/1/2/etc
 def list_inventory():
