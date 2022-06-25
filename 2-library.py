@@ -7,7 +7,7 @@ inventory = [
             'year': 1922,
             'medium': 'text',
             'id': '1840226358',
-            'availability': 'in',
+            'qty': 1,
         },
         {
             'title': 'A Portrait of the Artist as a Young Man',
@@ -15,7 +15,7 @@ inventory = [
             'year': 1916,
             'medium': 'text',
             'id': '0679739890',
-            'availability': 'out',
+            'qty': 2,
         },
         {
             'title': 'Dune',
@@ -23,7 +23,7 @@ inventory = [
             'year': 1965,
             'medium': 'text',
             'id': '0441172717',
-            'availability': 'in',
+            'qty': 2,
         },
         {
             'title': 'Speaker for the Dead',
@@ -31,7 +31,7 @@ inventory = [
             'year': 1986,
             'medium': 'text',
             'id': '1663634483',
-            'availability': 'in',
+            'qty': 1,
         },
         {
             'title': 'A People\'s History of the United States',
@@ -39,7 +39,7 @@ inventory = [
             'year': 1980,
             'medium': 'text',
             'id': '0060838655',
-            'availability': 'in',
+            'qty': 2,
         },
         {
             'title': 'Cloud Atlas',
@@ -47,7 +47,7 @@ inventory = [
             'year': 2004,
             'medium': 'text',
             'id': '0375507256',
-            'availability': 'out',
+            'qty': 1,
         },
         {
             'title': 'Cloud Atlas',
@@ -55,7 +55,7 @@ inventory = [
             'year': 2012,
             'medium': 'video',
             'id': '2012CA',
-            'availability': 'in',
+            'qty': 1,
         },
         {
             'title': 'Palette',
@@ -63,7 +63,7 @@ inventory = [
             'year': 2017,
             'medium': 'audio',
             'id': '2017PAL',
-            'availability': 'in',
+            'qty': 1,
         },
         {
             'title': 'Strange Desire',
@@ -71,7 +71,7 @@ inventory = [
             'year': 2014,
             'medium': 'audio',
             'id': '2014SD',
-            'availability': 'in',
+            'qty': 0,
         },
         {
             'title': 'The Good Place',
@@ -79,18 +79,31 @@ inventory = [
             'year': 2020,
             'medium': 'video',
             'id': '2020GP',
-            'availability': 'in',
+            'qty': 1,
         },
 ]
 
+# everything below this (and probably above this) is WIP.
+
 def main_menu():
     mm_choice = input("""
-Welcome to the library! What would you like to do?
+Welcome to the library! What would you like to do? You can also enter an item ID to check an item in or out.
     1: Check inventory
-    2: Check out an item
-    3: Check in an item
+    2: Add an item
+    3: Remove an item
     4: Quit
 >> """)
+    if mm_choice == "1" OR "check" OR "list":
+        list_inventory()
+    elif mm_choice == "2" OR "add":
+        add_item()
+    elif mm_choice == "3" OR "rm" OR "remove":
+        remove_item()
+    elif mm_choice == "4" OR "quit" OR "exit":
+        print("Thanks for visiting the library. Good-bye!")
+        quit()
+    else:
+        check_in_out(mm_choice)
 
 # todo: implement - ask user whether they'd like to list items by medium / year / author, give choices 0/1/2/etc
 def list_inventory():
@@ -105,19 +118,24 @@ Would you like to list inventory by:
     6: Availability
 """)
 
+# check in/out could probably be made into one function, actually
+def check_in_out(item):
+    cio_choice = input(f"You have selected {item['name']}, which is currently {item['qty'].upper()}. Would you like to check it out? (y/n) >> ")
+
+# todo: implement - identify item
 def check_out(item):
-    if item['availability'] == 'in':
-        item['availability'] = 'out'
+    co_choice = input(f"You have selected {item['name']}, which is currently AVAILABLE. Would you like to check it out? (y/n) >> ")
+    if co_choice == 'y' OR 'yes' OR 'yep' OR 'ok' OR 'sure':
+        item['qty'] = 'unavailable'
         print(f"You have checked out {item['name']} ({item['id']}). Enjoy!")
     else:
-        print(f"{item['name']} ({item['id']}) is currently not available for checkout.") 
+        print(f"{item['name']} ({item['id']}) was NOT checked out. Returning to main menu.")
 
+# todo: implement - identify item
 def check_in(item):
-    if item['availability'] == 'out':
-        item['availability'] = 'in'
-        print(f"You have checked out {item['name']} ({item['id']}). Thank you!")
-    else:
-        print(f"{item['name']} ({item['id']}) is not currently checked out.")
+    ci_choice = input(f"You have selected  {item['name']}, which is currently UNAVAILABLE. Would you like to 
+    item['qty'] = 'available'
+    print(f"You have checked out {item['name']} ({item['id']}). Thank you!")
 
 # todo: make sure year is a number
 def add_item():
@@ -126,7 +144,7 @@ def add_item():
     item['year'] = input(f"In what year was {item['title']} published? ")
     item['medium'] = input(f"What medium is {item['title']} in? ")
     item['id'] = input(f"Enter an ID number for {item['title']}. ")
-    item['availability'] = 'in'
+    item['qty'] = 'available'
     inventory.append(item)
 
 # todo: implement - should require user to enter id and ask for confirmation eg 'Are you sure you want to remove text "Speaker for the Dead" by "Orson Scott Card" (1986)?'
