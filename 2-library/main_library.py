@@ -8,6 +8,12 @@
 # declare inventory
 inventory = []
 
+# import sys so i can call my modules
+import sys
+# import my modules
+sys.path.append('modules')
+import check_in_out as cio
+
 # everything below this (and probably above this) is WIP.
 
 def main_menu():
@@ -47,6 +53,7 @@ def list_inventory():
 #""")
     for item in inventory:
         print(f"ID {item['id']} - {item['title']} ({item['year']}) by {item['author']}. Medium: {item['medium']}. Available quantity: {item['qty']}")
+
 # todo: implement - take item and query dictionary for values
 def check_in_out(item):
     """Allows user to determine whether they're checking an item in or out (after checking to see if both are logical)"""
@@ -100,31 +107,21 @@ def add_item():
     item['qty'] = 'available'
     inventory.append(item)
 
-def add_inventory(title, author, year, medium, item_id, qty):
-    new_book = {}
-    new_book['title'] = title
-    new_book['author'] = author
-    new_book['year'] = year
-    new_book['medium'] = medium
-    new_book['id'] = item_id
-    new_book['qty'] = qty
-    inventory.append(new_book)
-
 # todo: implement - should require user to enter id and ask for confirmation eg 'Are you sure you want to remove text "Speaker for the Dead" by "Orson Scott Card" (1986)?'
 def remove_item(item):
     """Allows user to remove an item from the inventory."""
     choice = input(f"Removing ????")
 
 # start off with some items
-add_inventory('Ulysses', 'James Joyce', 1992, 'text', '1840226358', 1)
-add_inventory('A Portrait of the Artist as a Young Man', 'James Joyce', 1916, 'text', '0679739890', 2)
-add_inventory('Dune', 'Frank Herbert', 1965, 'text', '0441172717', 2)
-add_inventory('Speaker for the Dead', 'Orson Scott Card', 1986, 'text', '1663634483', 1)
-add_inventory('A People\'s History of the United States', 'Howard Zinn', 1980, 'text', '0060838655', 2)
-add_inventory('Cloud Atlas', 'David Mitchell', 2004, 'text', '0375507256', 1)
-add_inventory('Cloud Atlas', ['Lana Wachowski', 'Lilly Wachowski', 'Tom Tykwer'], 2012, 'video', '2012CA', 1)
-add_inventory('Palette', 'IU', 2017, 'audio', '2017PAL', 1)
-add_inventory('Strange Desire', 'Bleachers', 2014, 'audio', '2014SD', 0)
-add_inventory('The Good Place', 'Michael Schur', 2020, 'video', '2020GP', 1)
+inventory.append(cio.library_formatting('Ulysses', 'James Joyce', 1992, 'text', '1840226358', 1))
+inventory.append(cio.library_formatting('A Portrait of the Artist as a Young Man', 'James Joyce', 1916, 'text', '0679739890', 2))
+inventory.append(cio.library_formatting('Dune', 'Frank Herbert', 1965, 'text', '0441172717', 2))
+inventory.append(cio.library_formatting('Speaker for the Dead', 'Orson Scott Card', 1986, 'text', '1663634483', 1))
+inventory.append(cio.library_formatting('A People\'s History of the United States', 'Howard Zinn', 1980, 'text', '0060838655', 2))
+inventory.append(cio.library_formatting('Cloud Atlas', 'David Mitchell', 2004, 'text', '0375507256', 1))
+inventory.append(cio.library_formatting('Cloud Atlas', ['Lana Wachowski', 'Lilly Wachowski', 'Tom Tykwer'], 2012, 'video', '2012CA', 1))
+inventory.append(cio.library_formatting('Palette', 'IU', 2017, 'audio', '2017PAL', 1))
+inventory.append(cio.library_formatting('Strange Desire', 'Bleachers', 2014, 'audio', '2014SD', 0))
+inventory.append(cio.library_formatting('The Good Place', 'Michael Schur', 2020, 'video', '2020GP', 1))
 
 main_menu()
