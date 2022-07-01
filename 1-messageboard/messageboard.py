@@ -1,5 +1,4 @@
 # slightly less simple messageboard
-# not yet functional, let me figure out how to save/load dictionaries to file first
 
 # import datetime modules so i can timestamp messages
 from datetime import datetime,timezone
@@ -14,6 +13,7 @@ import message_bank as mb
 messages = []
 
 def welcome():
+    """Allows user to choose what they'd like to do."""
     while True:
         print(f"Welcome to the messageboard! It is currently {datetime.now(timezone.utc)}.\nThere are {len(mb.messages)} messages.")
         choice = input('Type "save" (without quotes) to save a message, "show" (without quotes) to list the messages saved so far, or "exit" to exit.\n>> ')
@@ -31,6 +31,7 @@ def welcome():
             print(f"Invalid choice.\n")
 
 def save_message():
+    """Requests user input to construct a dictionary entry. Appends it to messageboard in memory and writes total to file."""
     entry = {}
     entry['name'] = input("What is your name? >> ").title()
     if entry['name'].lower() == "bob":
@@ -41,6 +42,7 @@ def save_message():
     fio.write_file(mb.messages)
 
 def show_messages():
+    """Reloads file, lists messages."""
     fio.load_file()
     for each_message in mb.messages:
         if "bob" in each_message['name'].lower() or "bob" in each_message['message'].lower():
