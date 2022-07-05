@@ -1,3 +1,5 @@
+"""Currently unimplemented - I don't actually think it serves us to use these right now."""
+
 class Item():
     """An item belonging to our library, which can be checked in and out."""
 
